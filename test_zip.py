@@ -5,6 +5,7 @@ from zipfile import ZipFile
 from pypdf import PdfReader
 from openpyxl import load_workbook
 
+
 def test_check_pdf(test_create_archive):
     with ZipFile('resources/archive.zip', 'r') as zip_ref:
         with zip_ref.open('tmp/example.pdf') as file:
@@ -14,6 +15,7 @@ def test_check_pdf(test_create_archive):
             text = page.extract_text()  # Текст из первой страницы
             assert text == "Тестовый PDF файл"
 
+
 def test_check_xlsx(test_create_archive):
     with ZipFile('resources/archive.zip', 'r') as zip_ref:
         with zip_ref.open('tmp/import_empl_xlsx.xlsx') as file:
@@ -21,6 +23,7 @@ def test_check_xlsx(test_create_archive):
             sheet = workbook.active
             first_cell_value = sheet.cell(row=1, column=1).value  # Значение первой ячейки (A1)
             assert first_cell_value == 'Внешний идентификатор для импорта'
+
 
 def test_check_csv(test_create_archive):
     with ZipFile('resources/archive.zip', 'r') as zip_ref:
